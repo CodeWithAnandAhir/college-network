@@ -1,9 +1,9 @@
-const router = require("express").Router();
-const auth = require("../middleware/authMiddleware");
-const { getProfile, updateProfile, search } = require("../controllers/userController");
+const express = require("express");
+const router = express.Router();
 
-router.get("/me", auth, getProfile);
-router.put("/update", auth, updateProfile);
-router.get("/search", auth, search);
+// TEMP test route
+router.get("/test", (req, res) => {
+  res.json({ message: "User route working" });
+});
 
 module.exports = router;

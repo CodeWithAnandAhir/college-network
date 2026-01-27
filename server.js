@@ -1,10 +1,25 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
+
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const followRoutes = require("./routes/followRoutes");
+const chatRoutes = require("./routes/chatRoutes");
+const groupRoutes = require("./routes/groupRoutes");
+
+require("./config/db");
+
 app.use(express.json());
 
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/chat", require("./routes/chatRoutes"));
-app.use("/api/groups", require("./routes/groupRoutes"));
+// ROUTES
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/follow", followRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/groups", groupRoutes);
 
-app.listen(5000, () => console.log("Server running 🚀"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});
