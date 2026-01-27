@@ -109,22 +109,22 @@ CREATE TABLE group_members (
   user_id INT
 );
 
-⚙️ Installation & Setup
-1️⃣ Clone Project
+
+##1️⃣ Clone Project
 git clone https://github.com/your-username/college-network.git
 cd college-network
 
-2️⃣ Install Dependencies
+##2️⃣ Install Dependencies
 npm install
 
-3️⃣ Create Environment File
+##3️⃣ Create Environment File
 
 Create .env file in root directory:
 
 PORT=5000
 JWT_SECRET=college_secret_key
 
-4️⃣ Configure Database
+##4️⃣ Configure Database
 
 Edit config/db.js:
 
@@ -133,7 +133,7 @@ user: "root",
 password: "",
 database: "college_network"
 
-▶️ Run Project
+##▶️ Run Project
 npx nodemon server.js
 
 Output:
@@ -146,7 +146,7 @@ Open browser:
 http://localhost:5000
 
 🔌 API Endpoints
-🔐 Authentication
+##🔐 Authentication
 Method	Endpoint	Description
 POST	/api/auth/register	Register student
 POST	/api/auth/login	Login student
@@ -155,21 +155,21 @@ Method	Endpoint	Description
 GET	/api/users/me	Get profile
 PUT	/api/users/update	Update profile
 GET	/api/users/search?q=	Search students
-🤝 Follow System
+##🤝 Follow System
 Method	Endpoint	Description
 POST	/api/follow/follow/:id	Follow user
 GET	/api/follow/followers/:id	Get followers
 GET	/api/follow/following/:id	Get following
-💬 Chat
+##💬 Chat
 Method	Endpoint	Description
 POST	/api/chat/send	Send message
 GET	/api/chat/:id	Get messages
-  Groups
+ ## Groups
 Method	Endpoint	Description
 POST	/api/groups/create	Create group
 POST	/api/groups/add	Add member
 GET	/api/groups/my	My groups
-  Authorization
+ ## Authorization
 
 Add JWT token in headers for protected routes:
 
