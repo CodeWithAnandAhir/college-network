@@ -1,0 +1,24 @@
+const db = require("../config/db");
+
+exports.getProfile = (req, res) => {
+  db.query("SELECT * FROM users WHERE id=?", [req.user.id],
+    (err, result) => res.json(result[0])
+  );
+};
+
+exports.updateProfile = (req, res) => {
+  const { bio, skills, branch, year } = req.body;
+  db.query(
+    "UPDATE users SET bio=?, skills=?, branch=?, year=? WHERE id=?",
+    [bio, skills, branch, year, req.user.id],
+    () => res.send("Profile updated ✅")
+  );
+};
+
+exports.search = (req, res) => {
+  db.query(
+    "SELECT id,name,branch FROM users WHERE name LIKE ?",
+    [`%${req.query.q}%`],
+    (err, result) => res.json(result)
+  );
+};
