@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sidebar Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="stylesheet" href="css/seacrch.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+ <div class="sidebar">
+  <div class="user-box">
+    
+    
+<img src="assets/Anand.jpeg" class="sidebar-avatar" id="sidebarAvatar">
+
+    <p class="project-name" id="projectName">College Network</p>
+  </div>
+
+  <div class="menu">
+    <a href="javascript:void(0)" data-section="home" onclick="showSection('home', this)">🏠 Home</a>
+    <a href="javascript:void(0)" data-section="profile" onclick="showSection('profile', this)">👤 Profile</a>
+    <a href="javascript:void(0)" data-section="chat" onclick="showSection('chat', this)">💬 Chat</a>
+    <a href="javascript:void(0)" data-section="search" onclick="showSection('search', this)">🔍 Search</a>
+    <a href="javascript:void(0)" data-section="about" onclick="showSection('about', this)">ℹ️ About Us</a>
+  </div>
+
+  <div class="bottom-menu">
+    <a href="javascript:void(0)" data-section="settings" onclick="showSection('settings', this)">⚙️ Settings</a>
+    <a href="javascript:void(0)" onclick="logout()" class="logout">🚪 Logout</a>
+  </div>
+</div>
+
+
+ <!-- Main Content -->
+<div class="main">
+
+<!-- Mobile Toggle Button -->
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <!-- Home Feed -->
+  <div id="home" class="section active">
+
+    <div class="home-header">
+      <h2>🏠 Home</h2>
+      <button class="create-post-btn" onclick="openCreatePost()">＋ Create Post</button>
+    </div>
+
+    <!-- Create Post Box -->
+    <div class="create-post">
+      <img src="assets/Anand.jpeg" class="post-avatar">
+      <input type="text" placeholder="What's on your mind?" disabled>
+    </div>
+
+    <!-- Create Post Modal -->
+<div id="createPostModal" class="post-modal">
+  <div class="post-modal-content">
+    <h3>Create Post</h3>
+
+    <textarea id="postText" placeholder="Write something..."></textarea>
+
+    <div class="post-modal-actions">
+      <button onclick="closeCreatePost()">Cancel</button>
+      <button onclick="publishPost()">Post</button>
+    </div>
+  </div>
+</div>
+
+
+    <div class="feed" id="feed">
+
+      <!-- Post Card -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="assets/Anand.jpeg" class="post-avatar">
+          <div>
+            <p class="post-user">Anand Ahir</p>
+            <small class="post-time">2 hours ago</small>
+          </div>
+        </div>
+
+        <p class="post-text">
+          Building my own college networking platform 🚀
+        </p>
+
+        <img src="assets/post1.jpg" class="post-image">
+
+        <div class="post-actions">
+          <button>❤️ Like</button>
+          <button>💬 Comment</button>
+          <button>📤 Share</button>
+        </div>
+      </div>
+
+      <!-- Another Post -->
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-avatar-text">👤</span>
+          <div>
+            <p class="post-user">Rahul Sharma</p>
+            <small class="post-time">Yesterday</small>
+          </div>
+        </div>
+
+        <p class="post-text">
+          Anyone interested in MERN stack study group?
+        </p>
+
+        <div class="post-actions">
+          <button>❤️ Like</button>
+          <button>💬 Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Profile -->
+<div id="profile" class="section">
+  <h2>My Profile</h2>
+
+ <!-- Profile Photo Editable -->
+<div class="profile-photo-box">
+  <img src="assets/Anand.jpeg" class="avatar" id="profileImage">
+  <span class="edit-photo" onclick="openPhotoPicker()">✏️</span>
+</div>
+
+<input 
+  type="file" 
+  id="photoInput" 
+  accept="image/*"
+  style="display:none"
+  onchange="changeProfilePhoto(event)"
+>
+
+
+  <div class="profile-info">
+    <p><b>Name:</b> <span id="profileName"></span></p>
+    <p><b>Branch:</b> <span id="profileBranch"></span></p>
+    <p><b>Year:</b> <span id="profileYear"></span></p>
+    <p><b>Bio:</b> <span id="profileBio"></span></p>
+    <p><b>Skills:</b> <span id="profileSkills"></span></p>
+  </div>
+
+  <!-- Followers -->
+  <div class="follow-box">
+    <div>
+      <h3 id="followersCount">0</h3>
+      <p>Followers</p>
+    </div>
+    <div>
+      <h3 id="followingCount">0</h3>
+      <p>Following</p>
+    </div>
+  </div>
+
+  <button class="btn" onclick="enableEdit()">Edit Profile</button>
+
+  <!-- Edit Profile -->
+  <div id="editProfile" class="edit-profile">
+    <input type="text" id="editName" placeholder="Name">
+    <input type="text" id="editBranch" placeholder="Branch">
+    <input type="number" id="editYear" placeholder="Year">
+    <input type="text" id="editSkills" placeholder="Skills">
+    <textarea id="editBio" placeholder="Write your bio here..."></textarea>
+    <button class="btn" onclick="saveProfile()">Save</button>
+  </div>
+
+  <!-- User Posts -->
+<hr class="profile-divider">
+
+<h3 class="profile-post-title">📸 My Posts</h3>
+
+<div class="profile-posts">
+
+  <!-- Post 1 -->
+  <div class="post-card">
+    <div class="post-header">
+      <img src="assets/Anand.jpeg" class="post-avatar">
+      <div>
+        <p class="post-user">Anand Ahir</p>
+        <small class="post-time">1 day ago</small>
+      </div>
+    </div>
+
+    <p class="post-text">
+      Started working on my College Network project 💻🔥
+    </p>
+
+    <div class="post-actions">
+      <button>❤️ Like</button>
+      <button>💬 Comment</button>
+    </div>
+  </div>
+
+  <!-- Post 2 -->
+  <div class="post-card">
+    <p class="post-text">
+      Learning full-stack development step by step 🚀
+    </p>
+
+    <div class="post-actions">
+      <button>❤️ Like</button>
+      <button>💬 Comment</button>
+
+       <!-- Owner actions -->
+  <button class="edit-btn" onclick="editPost(this)">✏️ Edit</button>
+  <button class="delete-btn" onclick="deletePost(this)">🗑️ Delete</button>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ================= SEARCH PEOPLE ================= -->
+<div class="sidebar-search">
+
+  <input
+    type="text"
+    id="sidebarSearchInput"
+    placeholder="🔍 Search people..."
+    autocomplete="off"
+    onkeyup="sidebarSearchUsers()"
+  >
+
+  <div
+    id="sidebarSearchResults"
+    class="sidebar-search-results">
+  </div>
+
+</div>
+<!-- ================================================= -->
+
+
+    <!-- About -->
+<div id="about" class="section">
+  <h2>ℹ️ About College Network</h2>
+
+  <p>
+    <strong>College Network</strong> is a college-exclusive student networking platform
+    designed to connect students within a secure and verified digital environment.
+    The system allows students to interact, collaborate, and communicate using
+    modern web technologies.
+  </p>
+
+  <p>
+    This project is built as a <b>full-featured web application</b> using
+    <b>HTML, CSS, JavaScript</b> on the frontend and
+    <b>Node.js, Express.js, JWT authentication, and MySQL</b> on the backend.
+    Only students with valid college email IDs can register and access the platform,
+    ensuring a safe and trusted network.
+  </p>
+
+  <h3>🎯 Key Objectives</h3>
+  <ul>
+    <li>Provide a secure college-only social networking system</li>
+    <li>Enable student profile management and peer discovery</li>
+    <li>Support private one-to-one communication</li>
+    <li>Allow students to create and manage groups</li>
+    <li>Encourage collaboration and knowledge sharing</li>
+  </ul>
+
+  <h3>🛠️ Core Features</h3>
+  <ul>
+    <li>College email–based authentication (JWT)</li>
+    <li>Student profiles with skills and bio</li>
+    <li>Follow / followers system</li>
+    <li>Private chat functionality</li>
+    <li>Group creation and management</li>
+  </ul>
+
+  <h3>🚀 Future Scope</h3>
+  <ul>
+    <li>Real-time chat using Socket.io</li>
+    <li>Group chat and notifications</li>
+    <li>File and media sharing</li>
+    <li>Modern frontend with React.js</li>
+    <li>Cloud deployment and scalability</li>
+  </ul>
+
+  <p>
+    This project is suitable for <b>academic submission, final year projects,
+    and portfolio showcasing</b>, and is designed with scalability and
+    real-world application in mind.
+  </p>
+</div>
+
+<!-- Chat Section -->
+<div id="chat" class="section">
+
+  <div class="chat-container">
+
+    <!-- LEFT: User List -->
+    <div class="chat-users">
+      <h3>Chats</h3>
+
+      <div class="user active" onclick="openChat('Rahul Sharma', this)">
+        <span class="avatar">👤</span>
+        <div>
+          <p class="name">Rahul Sharma</p>
+          <small>Online</small>
+        </div>
+      </div>
+
+      <div class="user" onclick="openChat('Aman Verma', this)">
+        <span class="avatar">👤</span>
+        <div>
+          <p class="name">Aman Verma</p>
+          <small>Offline</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Chat Area -->
+    <div class="chat-area">
+
+      <!-- Header -->
+      <div class="chat-header">
+        <span id="chatUserName">Select a user</span>
+        <span class="status" id="chatStatus"></span>
+      </div>
+
+      <!-- Messages -->
+      <div class="chat-box" id="chatBox">
+        <p class="empty-chat" id="emptyChat">
+          👋 Start a conversation
+        </p>
+      </div>
+
+      <!-- Input -->
+      <div class="chat-input">
+        <input
+          type="text"
+          id="chatMessage"
+          placeholder="Type a message..."
+          autocomplete="off"
+        />
+        <button type="button" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Settings -->
+<div id="settings" class="section">
+  <h2>⚙️ Settings</h2>
+  <p>Manage your preferences</p>
+
+  <div class="setting-item">
+    <label>
+      <input type="checkbox" id="darkModeToggle">
+      Dark Mode
+    </label>
+  </div>
+
+  <div class="setting-item">
+    <label>
+      <input type="checkbox" id="emailToggle">
+      Email Notifications
+    </label>
+  </div>
+
+  <button class="save-btn" onclick="saveSettings()">Save Settings</button>
+ </div>
+</div>
+<script src="js/home.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/setting.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>
