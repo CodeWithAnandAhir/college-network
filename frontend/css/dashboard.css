@@ -1,0 +1,298 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+.menu {
+  flex: 1;
+}
+
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+}
+
+/* Layout */
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #4d5c74;
+  border-right : 1px solid #e5e7eb;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position : fixed;
+  top : 0;
+  left : 0;
+  height : 100vh;
+  overflow: hidden;
+  transition : transform 0.3s ease;
+  z-index : 1000;
+}
+
+.logo {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar a {
+  display: block;
+  color: rgb(83, 64, 64);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+  background: #374151;
+}
+
+/* Main Content */
+.main {
+  margin-left : 240px;
+  width : calc(100% - 240px);
+  flex: 1;
+  height : 100vh;
+  padding: 20px;
+  overflow-y:auto;
+  box-sizing: border-box;
+}
+
+/* Sections */
+.section {
+  display: none;
+  width : 100%;
+  max-width: 100%;
+  margin : 0;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Profile */
+.avatar {
+  width: 100px;
+  border-radius: 50%;
+  margin: 15px 0;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+/* Chat Section */
+.chat-box {
+  height: 300px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-y: auto;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+.chat-message {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+}
+
+.chat-input button {
+  padding: 8px 14px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.bottom-menu a {
+  display: block;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+}
+
+.bottom-menu a:hover {
+  background: #374151;
+}
+
+.logout {
+  background: #dc2626;
+}
+
+.logout:hover {
+  background: #b91c1c;
+}
+.follow-box {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.follow-box div {
+  text-align: center;
+}
+.profile-info p {
+  margin: 6px 0;
+}
+
+.edit-profile {
+  display: none;
+  margin-top: 15px;
+}
+
+.edit-profile input,
+.edit-profile textarea {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+}
+
+.follow-box h3 {
+  margin: 0;
+  color: #667eea;
+}
+
+.edit-profile textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.setting-item {
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+.save-btn {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  background: #4f46e5;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background: #121212;
+  color: #ffffff;
+}
+
+#about p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+#about ul {
+  margin-left: 20px;
+}
+
+#about li {
+  margin-bottom: 6px;
+}
+
+.menu a,
+.bottom-menu a {
+  display: block;
+  padding: 10px;
+  border-radius: 6px;
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.menu a.active,
+.bottom-menu a.active {
+  background: #4f46e5;
+  color: white;
+}
+
+.menu a:hover,
+.bottom-menu a:hover {
+  background: #e0e7ff;
+}
+
+.user-box {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.sidebar-avatar {
+  width: 60px;          /* 👈 FIXED size */
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;   /* 👈 image distort nahi hogi */
+  display: block;
+  margin: 0 auto 8px;
+}
+
+#sidebarName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* Toggle button (hidden on desktop) */
+.sidebar-toggle {
+  display: none;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* 🔥 MOBILE VIEW */
+@media (max-width: 768px) {
+
+  /* Sidebar hidden by default */
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  /* Sidebar when open */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Main full width */
+  .main {
+    margin-left: 0;
+  }
+
+  /* Show toggle button */
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
