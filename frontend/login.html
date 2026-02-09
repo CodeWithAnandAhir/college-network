@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
-  <div class="container">
+
+<div class="login-container">
     <h2>Login</h2>
 
     <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
+        <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
 
-      <button type="submit">Login</button>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+            <span id="togglePassword">👁</span>
+        </div>
+
+        <button type="submit">Login</button>
+        <p id="error"></p>
     </form>
-
-    <a href="register.html">Create account</a>
-  </div>
-
-  <script src="js/auth.js"></script>
+    <a href="register.html">Already have an account? Register</a>
+</div>
+<script src="js/auth.js"></script>
 </body>
 </html>
-
