@@ -1,0 +1,48 @@
+/* =====================
+   SIDEBAR SEARCH
+===================== */
+
+.sidebar-search {
+  padding: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sidebar-search input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  outline: none;
+}
+
+/* Results box */
+.sidebar-search-results {
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* User row */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.sidebar-user:hover {
+  background: #f1f5f9;
+}
+
+.sidebar-user img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.sidebar-user span {
+  font-size: 13px;
+}
